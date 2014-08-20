@@ -1,4 +1,11 @@
 <div class="row marketing">
+    <div style="width: 200px;height: 100%; position: absolute; x:0; y:0;   background-color: lime;">
+        <h2>Draggable components:</h2>
+        <div ng-repeat="obj in draggableObjects" ng-drag="true" ng-drag-data="obj">
+            {{obj.name}}
+        </div>
+    </div>
+
     <frame>
         <html lang="en">
 
@@ -87,6 +94,62 @@
                     max-width: 130px;
                 }
             }
+            * {
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+            [ng-drag] {
+                -moz-user-select: -moz-none;
+                -khtml-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            [ng-drag] {
+                width: 100px;
+                height: 100px;
+                background: rgba(255, 0, 0, 0.5);
+                color: white;
+                text-align: center;
+                padding-top: 40px;
+                display: inline-block;
+                margin: 0 10px;
+                cursor: move;
+            }
+            [ng-drag].drag-over {
+                border: solid 1px red;
+            }
+            [ng-drag].dragging {
+                opacity: 0.5;
+            }
+            [ng-drop] {
+                /*background: rgba(0, 255, 0, 0.5);*/
+                text-align: center;
+                /*        width: 600px;
+        height: 200px;*/
+                /*padding-top: 90px;*/
+                display: block;
+                /*margin: 20px auto;*/
+                position: relative;
+            }
+            [ng-drop].drag-enter {
+                border: solid 5px red;
+            }
+            [ng-drop] span.title {
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 200px;
+                height: 20px;
+                margin-left: -100px;
+                margin-top: -10px;
+            }
+            [ng-drop] div {
+                position: relative;
+                z-index: 2;
+            }
             </style>
 
         </head>
@@ -120,7 +183,11 @@
                                                 <!-- ### COLUMN 1 ### -->
                                                 <table border="0" cellspacing="0" cellpadding="0" width="260" align="left" class="col-2">
                                                     <tr>
-                                                        <td align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif;">
+                                                        <td align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif;" ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
+
+                                                            <div ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess1($data,$event)">
+                                                                {{obj.name}}
+                                                            </div>
                                                             <img src="http://internations.github.com/antwort/images/grey-175x130.png" alt="Image Caption" border="0" hspace="0" vspace="0" style="vertical-align:top; padding-bottom:12px;" class="col-2-img">
                                                             <br>
                                                             <a href="#" style="color:#2469A0; font-weight:bold">Herman Melville</a>
