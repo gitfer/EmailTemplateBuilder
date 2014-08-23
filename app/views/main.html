@@ -183,16 +183,12 @@
                                                 <!-- ### COLUMN 1 ### -->
                                                 <table border="0" cellspacing="0" cellpadding="0" width="260" align="left" class="col-2">
                                                     <tr>
-                                                        <td align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif;" ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
+                                                        <td align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif; min-height: 20px;" ng-drop="true" ng-drop-success="onDropComplete($data,$event)">
 
-                                                            <div ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess1($data,$event)">
+                                                            <div ng-repeat="obj in droppedObjects" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess($data,$event)">
                                                                 {{obj.name}}
                                                             </div>
-                                                            <img src="http://internations.github.com/antwort/images/grey-175x130.png" alt="Image Caption" border="0" hspace="0" vspace="0" style="vertical-align:top; padding-bottom:12px;" class="col-2-img">
-                                                            <br>
-                                                            <a href="#" style="color:#2469A0; font-weight:bold">Herman Melville</a>
-                                                            <br>It's worse than being in the whirled woods, the last day of the year! Who'd go climbing after chestnuts now? But there they go, all cursing, and here I don't.
-                                                            <br>
+                                                   
                                                         </td>
                                                     </tr>
                                                 </table>
