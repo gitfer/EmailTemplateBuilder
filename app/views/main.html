@@ -2,7 +2,7 @@
     <div style="width: 200px;height: 100%; position: absolute; x:0; y:0;   background-color: lime;">
         <h2>Draggable components:</h2>
         <div ng-repeat="obj in draggableObjects" ng-drag="true" ng-drag-data="obj">
-            {{obj.name}}
+            {{obj.contenuto}}
         </div>
     </div>
 
@@ -199,15 +199,10 @@
                                                 <!-- ### COLUMN 1 ### -->
                                                 <table border="0" cellspacing="0" cellpadding="0" width="260" align="left" class="col-2">
                                                     <tr>
-                                              <!--           <td align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif; min-height: 20px;" ng-drop="true" ng-drop-success="onDropComplete($index, $data, $event)">
-                                                            <div ng-repeat="obj in droppedObjects" ng-drag="true" ng-drop="true" ng-drag-data="obj" ng-drag-success="onDragSuccess($index, $data,$event)" >
-                                                                {{obj.name}}
-                                                            </div>
-                                                        </td> -->
-                                                        <td  align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif; min-height: 20px;"  ng-drop="true" ng-drop-success="onDropComplete1($data, $event)">
+                                                        <td  align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif; min-height: 20px;"  ng-drop="true" ng-drop-success="onDropComplete($data, $event)">
                                                    
-                                                          <span ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess1($data,$event)" ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)">
-                                                              {{obj.name}}
+                                                          <span ng-repeat="obj in droppedObjects" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess($data,$event)" ng-drop="true" ng-drop-success="onDropCompleteReorder($index, $data, $event)">
+                                                              {{obj.contenuto}}
                                                               <br />
                                                           </span>
                                                         </td>
@@ -223,7 +218,7 @@
                                                         <td align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif;">
                                                             <img src="http://internations.github.com/antwort/images/grey-175x130.png" alt="Image Caption" border="0" hspace="0" vspace="0" style="vertical-align:top; padding-bottom:12px;" class="col-2-img">
                                                             <br>
-                                                            {{droppedObjects1}}
+                                                            {{droppedObjects}}
                                                             <br>
                                                             <a href="#" style="color:#2469A0; font-weight:bold">I am Ishmael</a>
                                                             <br>White squalls? white whale, shirr! shirr! Here have I heard all their chat just now, and the white whale—shirr! shirr!—but spoken of once! and&hellip;

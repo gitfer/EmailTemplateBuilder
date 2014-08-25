@@ -3,26 +3,47 @@
 angular.module('emailTemplateBuilderApp', ['ngDraggable'])
 	.controller('MainCtrl', function($scope) {
 
-        $scope.draggableObjects = [{name:'one'}, {name:'two'}, {name:'three'}];
-        $scope.droppedObjects1 = [];
-        $scope.droppedObjects2= [];
-        $scope.onDropComplete1=function(data,evt){
-            var index = $scope.droppedObjects1.indexOf(data);
-            if (index == -1)
-            $scope.droppedObjects1.push(data);
+        $scope.draggableObjects = [
+        {
+        	contenuto:'Lorem ipsum <strong>dolor</strong> sit amet...', 
+        	type: 'testo'
+        }, 
+        {
+        	contenuto:'two', 
+        	type: 'immagine'
+        }, 
+        {
+        	contenuto:'three', 
+        	type: 'spacer'
+        }, 
+        {
+        	contenuto:'four', 
+        	type: 'divider'
+        }, 
+        {
+        	contenuto:'five', 
+        	type: 'button'
         }
-        $scope.onDragSuccess1=function(data,evt){
-            // var index = $scope.droppedObjects1.indexOf(data);
+        ];
+        $scope.droppedObjects = [];
+
+        $scope.onDropComplete=function(data,evt){
+            var index = $scope.droppedObjects.indexOf(data);
+            if (index == -1)
+            $scope.droppedObjects.push(data);
+        }
+        $scope.onDragSuccess=function(data,evt){
+            // var index = $scope.droppedObjects.indexOf(data);
             // if (index > -1) {
-            //     $scope.droppedObjects1.splice(index, 1);
+            //     $scope.droppedObjects.splice(index, 1);
             // }
         }
-        
-        $scope.onDropComplete = function (index, obj, evt) {
-            var otherObj = $scope.droppedObjects1[index];
-            var otherIndex = $scope.droppedObjects1.indexOf(obj);
-            $scope.droppedObjects1[index] = obj;
-            $scope.droppedObjects1[otherIndex] = otherObj;
+
+        $scope.onDropCompleteReorder = function (index, obj, evt) {
+            var otherObj = $scope.droppedObjects[index];
+            var otherIndex = $scope.droppedObjects.indexOf(obj);
+            $scope.droppedObjects[index] = obj;
+            $scope.droppedObjects[otherIndex] = otherObj;
         }
 
         var inArray = function(array, obj) {
