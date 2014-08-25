@@ -94,70 +94,99 @@
                     max-width: 130px;
                 }
             }
-            * {
-                -moz-box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-                box-sizing: border-box;
-            }
-            [ng-drag] {
-                -moz-user-select: -moz-none;
-                -khtml-user-select: none;
-                -webkit-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-            [ng-drag] {
-                width: 100px;
-                height: 100px;
-                background: rgba(255, 0, 0, 0.5);
-                color: white;
-                text-align: center;
-                padding-top: 40px;
-                display: inline-block;
-                margin: 0 10px;
-                cursor: move;
-            }
-            [ng-drag].drag-over {
-                border: solid 1px red;
-            }
-            [ng-drag].dragging {
-                opacity: 0.5;
-            }
-            [ng-drop] {
-                /*background: rgba(0, 255, 0, 0.5);*/
-                text-align: center;
-                /*        width: 600px;
-        height: 200px;*/
-                /*padding-top: 90px;*/
-                display: block;
-                /*margin: 20px auto;*/
-                position: relative;
-            }
-            [ng-drop].drag-enter {
-                border: solid 5px red;
-            }
-            [ng-drop] span.title {
-                display: block;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                width: 200px;
-                height: 20px;
-                margin-left: -100px;
-                margin-top: -10px;
-            }
-            [ng-drop] div {
-                position: relative;
-                z-index: 2;
-            }
+
+        * {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        [ng-drag] {
+            -moz-user-select: -moz-none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        [ng-drag] {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            padding-top: 40px;
+            display: block;
+            cursor: move;
+        }
+
+        [ng-drag].one {
+            background: rgba(255, 0, 0, 0.5);
+        }
+
+        [ng-drag].two {
+            background: rgba(0, 255, 0, 0.5);
+        }
+
+        [ng-drag].three {
+            background: rgba(0, 0, 255, 0.5);
+        }
+
+        [ng-drag].drag-over {
+            border: solid 1px red;
+        }
+
+        [ng-drag].dragging {
+            opacity: 0.5;
+        }
+
+        [ng-drop] {
+            background: rgba(0, 0, 0, 0.25);
+            text-align: center;
+            display: block;
+            position: relative;
+            padding: 20px;
+            width: 140px;
+            height: 140px;
+            float: left;
+        }
+
+        [ng-drop].drag-enter {
+            border: solid 5px red;
+        }
+
+        [ng-drop] span.title {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 20px;
+            margin-left: -100px;
+            margin-top: -10px;
+        }
+
+        [ng-drop] div {
+            position: relative;
+            z-index: 2;
+        }
+
+        .draglist {
+            display: inline-block;
+            margin: 0 auto;
+            min-height: 40px;
+            background-color: red;
+        }
+
+
             </style>
 
         </head>
 
         <body style="margin:0; padding:10px 0;" bgcolor="#ebebeb" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
 
-            <br>
 
+            <br>
             <!-- 100% wrapper (grey background) -->
             <table border="0" width="100%" height="100%" cellpadding="0" cellspacing="0" bgcolor="#ebebeb">
                 <tr>
@@ -183,12 +212,16 @@
                                                 <!-- ### COLUMN 1 ### -->
                                                 <table border="0" cellspacing="0" cellpadding="0" width="260" align="left" class="col-2">
                                                     <tr>
-                                                        <td align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif; min-height: 20px;" ng-drop="true" ng-drop-success="onDropComplete($data,$event)">
-
-                                                            <div ng-repeat="obj in droppedObjects" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess($data,$event)">
+                                              <!--           <td align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif; min-height: 20px;" ng-drop="true" ng-drop-success="onDropComplete($index, $data, $event)">
+                                                            <div ng-repeat="obj in droppedObjects" ng-drag="true" ng-drop="true" ng-drag-data="obj" ng-drag-success="onDragSuccess($index, $data,$event)" >
                                                                 {{obj.name}}
                                                             </div>
+                                                        </td> -->
+                                                        <td  align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif; min-height: 20px;"  ng-drop="true" ng-drop-success="onDropComplete1($data, $event)">
                                                    
+                                                          <div ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess1($data,$event)" ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)">
+                                                              {{obj.name}}
+                                                          </div>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -202,9 +235,10 @@
                                                         <td align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif;">
                                                             <img src="http://internations.github.com/antwort/images/grey-175x130.png" alt="Image Caption" border="0" hspace="0" vspace="0" style="vertical-align:top; padding-bottom:12px;" class="col-2-img">
                                                             <br>
-                                                            <a href="#" style="color:#2469A0; font-weight:bold">I am Ishmael</a>
+                                                            {{droppedObjects1}}
+                                                            <!-- <a href="#" style="color:#2469A0; font-weight:bold">I am Ishmael</a>
                                                             <br>White squalls? white whale, shirr! shirr! Here have I heard all their chat just now, and the white whale—shirr! shirr!—but spoken of once! and&hellip;
-                                                            <br>
+                                                            <br> -->
                                                         </td>
                                                     </tr>
                                                 </table>
