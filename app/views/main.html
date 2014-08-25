@@ -113,7 +113,6 @@
             width: 100px;
             height: 100px;
             background: rgba(255, 0, 0, 0.5);
-            color: white;
             text-align: center;
             padding-top: 40px;
             display: block;
@@ -129,7 +128,7 @@
         }
 
         [ng-drop] {
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(1, 1, 1, 0);
             text-align: center;
             /*display: block;*/
             position: relative;
@@ -209,6 +208,7 @@
                                                    
                                                           <span ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess1($data,$event)" ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)">
                                                               {{obj.name}}
+                                                              <br />
                                                           </span>
                                                         </td>
                                                     </tr>
@@ -224,9 +224,10 @@
                                                             <img src="http://internations.github.com/antwort/images/grey-175x130.png" alt="Image Caption" border="0" hspace="0" vspace="0" style="vertical-align:top; padding-bottom:12px;" class="col-2-img">
                                                             <br>
                                                             {{droppedObjects1}}
-                                                            <!-- <a href="#" style="color:#2469A0; font-weight:bold">I am Ishmael</a>
+                                                            <br>
+                                                            <a href="#" style="color:#2469A0; font-weight:bold">I am Ishmael</a>
                                                             <br>White squalls? white whale, shirr! shirr! Here have I heard all their chat just now, and the white whale—shirr! shirr!—but spoken of once! and&hellip;
-                                                            <br> -->
+                                                            <br>
                                                         </td>
                                                     </tr>
                                                 </table>
