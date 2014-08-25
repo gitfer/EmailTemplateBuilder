@@ -120,18 +120,6 @@
             cursor: move;
         }
 
-        [ng-drag].one {
-            background: rgba(255, 0, 0, 0.5);
-        }
-
-        [ng-drag].two {
-            background: rgba(0, 255, 0, 0.5);
-        }
-
-        [ng-drag].three {
-            background: rgba(0, 0, 255, 0.5);
-        }
-
         [ng-drag].drag-over {
             border: solid 1px red;
         }
@@ -143,11 +131,11 @@
         [ng-drop] {
             background: rgba(0, 0, 0, 0.25);
             text-align: center;
-            display: block;
+            /*display: block;*/
             position: relative;
             padding: 20px;
-            width: 140px;
-            height: 140px;
+            /*width: 140px;
+            height: 140px;*/
             float: left;
         }
 
@@ -219,9 +207,9 @@
                                                         </td> -->
                                                         <td  align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif; min-height: 20px;"  ng-drop="true" ng-drop-success="onDropComplete1($data, $event)">
                                                    
-                                                          <div ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess1($data,$event)" ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)">
+                                                          <span ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess1($data,$event)" ng-drop="true" ng-drop-success="onDropComplete($index, $data,$event)">
                                                               {{obj.name}}
-                                                          </div>
+                                                          </span>
                                                         </td>
                                                     </tr>
                                                 </table>
