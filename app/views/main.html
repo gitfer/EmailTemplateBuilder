@@ -205,8 +205,8 @@
                                                     <tr>
                                                         <td  align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif; min-height: 20px;"  ng-drop="true" ng-drop-success="onDropComplete($data, $event)">
                                                    
-                                                          <span ng-repeat="obj in droppedObjects" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess($data,$event)" ng-drop="true" ng-drop-success="onDropCompleteReorder($index, $data, $event)">
-                                                              {{obj.contenuto}}
+                                                          <span ng-repeat="obj in droppedObjects" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess($data,$event)" ng-drop="true" ng-drop-success="onDropCompleteReorder($index, $data, $event)" ng-bind-html="obj.contenuto">
+                                                              
                                                               <br />
                                                           </span>
                                                         </td>
