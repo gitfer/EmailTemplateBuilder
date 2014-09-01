@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('emailTemplateBuilderApp', ['ngSanitize','ngDraggable'])
+angular.module('emailTemplateBuilderApp', ['ngSanitize', 'ngDraggable'])
 	.controller('MainCtrl', function($scope, $sce) {
 
 		$scope.draggableObjects = [{
@@ -23,21 +23,26 @@ angular.module('emailTemplateBuilderApp', ['ngSanitize','ngDraggable'])
 
 		$scope.onDropComplete = function(data, evt) {
 			var index = $scope.droppedObjects.indexOf(data);
-			if (index == -1)
+			if (data.sorgente === "panel") {
 				$scope.droppedObjects.push(data);
+				console.log('$scope.droppedObjects', $scope.droppedObjects)
+			}
 		}
 		$scope.onDragSuccess = function(data, evt) {
+			console.log('onDragSuccess', data, evt)
 			// var index = $scope.droppedObjects.indexOf(data);
 			// if (index > -1) {
-			//     $scope.droppedObjects.splice(index, 1);
+			// 	$scope.droppedObjects.splice(index, 1);
 			// }
 		}
 
 		$scope.onDropCompleteReorder = function(index, obj, evt) {
-			var otherObj = $scope.droppedObjects[index];
-			var otherIndex = $scope.droppedObjects.indexOf(obj);
-			$scope.droppedObjects[index] = obj;
-			$scope.droppedObjects[otherIndex] = otherObj;
+			if (obj.sorgente !== "panel") {
+				var otherObj = $scope.droppedObjects[index];
+				var otherIndex = $scope.droppedObjects.indexOf(obj);
+				$scope.droppedObjects[index] = obj;
+				$scope.droppedObjects[otherIndex] = otherObj;
+			}
 		}
 
 		$scope.removeComponent = function(obj) {

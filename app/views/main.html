@@ -1,6 +1,6 @@
     <div style="width: 100%;height: 40px; position: relative; left: 140px">
         <h2>Draggable components:</h2>
-        <ul ng-repeat="obj in draggableObjects" ng-drag="true" ng-drag-data="obj" >
+        <ul ng-repeat="obj in draggableObjects" ng-drag="true" ng-drag-data="obj" ng-sorgente="panel" >
             <li style="clear: both; "><div ng-bind-html="obj.contenuto"></div> &nbsp;<a href="" ng-click="removeComponent(obj)">- Remove</a></li>
         </ul>
     </div>
@@ -205,14 +205,14 @@
                                                     <tr>
                                                         <td  align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif; min-height: 20px;"  ng-drop="true" ng-drop-success="onDropComplete($data, $event)">
                                                    
-                                                          <span ng-repeat="obj in droppedObjects" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess($data,$event)" ng-drop="true" ng-drop-success="onDropCompleteReorder($index, $data, $event)" ng-bind-html="obj.contenuto">
+                                                          <span ng-repeat="obj in droppedObjects track by $index" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess($data,$event)"  ng-sorgente="reorder" ng-drop="true"  ng-drop-success="onDropCompleteReorder($index, $data, $event)" ng-bind-html="obj.contenuto">
                                                               
                                                               <br />
                                                           </span>
                                                         </td>
                                                     </tr>
                                                 </table>
-
+<div ng-drag-clone=""></div>
                                             </td>
                                             <td class="force-col" valign="top">
 
@@ -222,7 +222,8 @@
                                                         <td align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif;">
                                                             <img src="http://internations.github.com/antwort/images/grey-175x130.png" alt="Image Caption" border="0" hspace="0" vspace="0" style="vertical-align:top; padding-bottom:12px;" class="col-2-img">
                                                             <br>
-                                                            {{droppedObjects}}
+                                                            {{droppedObjects}}<hr>
+                                                            {{draggableObjects}}
                                                             <br>
                                                             <a href="#" style="color:#2469A0; font-weight:bold">I am Ishmael</a>
                                                             <br>White squalls? white whale, shirr! shirr! Here have I heard all their chat just now, and the white whale—shirr! shirr!—but spoken of once! and&hellip;
