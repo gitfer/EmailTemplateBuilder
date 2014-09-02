@@ -5,18 +5,25 @@ angular.module('emailTemplateBuilderApp', ['ngSanitize', 'ngDraggable'])
 
 		$scope.draggableObjects = [{
 			contenuto: 'Lorem ipsum <strong>dolor</strong> sit amet...',
-			type: 'testo'
+			type: 'testo',
+			allineamento: 'block'
 		}, {
-			contenuto: 'two',
-			type: 'immagine'
+			contenuto: '<div style="display:block !important; clear:both; width:100%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p style="height: 20px"></p></div>',
+			type: 'spacer',
+			allineamento: 'block'
+		},
+		 {
+			contenuto: '<div style="display:block !important; clear:both; width:100%;"><img src="/images/yeoman.png"></img></div>',
+			type: 'immagine',
+			allineamento: 'inline'
+		}, 
+		{
+			contenuto: '<div style="display:block !important; clear:both; width:100%;"><hr style="display:block; clear:both; width:100%; border-width: 1px" ></div>',
+			type: 'divider',
+			allineamento: 'block'
 		}, {
-			contenuto: 'three',
-			type: 'spacer'
-		}, {
-			contenuto: 'four',
-			type: 'divider'
-		}, {
-			contenuto: 'five',
+			contenuto: '<input type="button" value="clic" />',
+			allineamento: 'block',
 			type: 'button'
 		}];
 		$scope.droppedObjects = [];

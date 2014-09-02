@@ -134,22 +134,23 @@
             padding: 20px;
             /*width: 140px;
             height: 140px;*/
-            float: left;
+            /*float: left;*/
         }
 
         [ng-drop].drag-enter {
             border: solid 5px red;
         }
 
-        [ng-drop] span.title {
-            display: block;
-            position: absolute;
+        [ng-drop].blocco {
+            display: inline;
+            padding: 0px;
+/*            position: absolute;
             top: 50%;
             left: 50%;
             width: 200px;
             height: 20px;
             margin-left: -100px;
-            margin-top: -10px;
+            margin-top: -10px;*/
         }
 
         [ng-drop] div {
@@ -189,8 +190,6 @@
                                 <td class="container-padding" bgcolor="#ffffff" style="background-color: #ffffff; padding-left: 30px; padding-right: 30px; font-size: 14px; line-height: 20px; font-family: Helvetica, sans-serif; color: #333;">
                                     <br>
 
-
-
                                     <div style="font-weight: bold; font-size: 18px; line-height: 24px; color: #D03C0F;">
                                         Quick Two Columns to Rows Demo
                                     </div>
@@ -205,9 +204,7 @@
                                                     <tr>
                                                         <td  align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif; min-height: 20px;"  ng-drop="true" ng-drop-success="onDropComplete($data, $event)">
                                                    
-                                                          <span ng-repeat="obj in droppedObjects track by $index" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess($data,$event)"  ng-sorgente="reorder" ng-drop="true"  ng-drop-success="onDropCompleteReorder($index, $data, $event)" ng-bind-html="obj.contenuto">
-                                                              
-                                                              <br />
+                                                          <span ng-repeat="obj in droppedObjects track by $index" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess($data,$event)"  ng-sorgente="reorder" ng-drop="true"  ng-drop-success="onDropCompleteReorder($index, $data, $event)" ng-bind-html="obj.contenuto" class="blocco">
                                                           </span>
                                                         </td>
                                                     </tr>
