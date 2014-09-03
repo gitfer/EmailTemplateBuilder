@@ -57,7 +57,8 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-        ]
+        ],
+        tasks: ['ngDraggable']
       }
     },
 
@@ -338,6 +339,13 @@ module.exports = function (grunt) {
         configFile: 'karma.conf.js',
         singleRun: true
       }
+    },
+     shell: {
+        updateNgDraggable: {
+            command: function () {
+                return 'bower update ngDraggable';
+            }
+        }
     }
   });
 
@@ -356,6 +364,8 @@ module.exports = function (grunt) {
       'watch'
     ]);
   });
+1
+  grunt.registerTask('ngDraggable', ['shell:updateNgDraggable:command']);
 
   grunt.registerTask('server', function (target) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
