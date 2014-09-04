@@ -26,7 +26,7 @@ angular.module('emailTemplateBuilderApp', ['ngSanitize', 'ngDraggable'])
 			type: 'divider',
 			allineamento: 'block'
 		}, {
-			contenuto: '<button>ciao</button>',
+			contenuto: 'Cliccami',
 			allineamento: 'block',
 			type: 'button'
 		}];

@@ -1,7 +1,11 @@
 <div style="width: 10%; position: absolute; left: 40px; top: 40px; border: 1px solid black;">
         <h2>Draggable components:</h2>
         <ul ng-repeat="obj in draggableObjects" class="draglist" style="display:block" ng-drag="true" ng-drag-data="obj" ng-sorgente="panel" >
-            <li style="clear: both;" ng-bind-html="obj.contenuto"></li>
+            <li style="clear: both;" ng-bind-html="obj.contenuto" ng-show="obj.type!=='button'">
+            </li>
+            <li style="clear: both;"  ng-show="obj.type==='button'">
+                <button>{{obj.contenuto}}</button>
+            </li>
         </ul>
         <p><strong>Nota:</strong>Se riordini trascina bene fuori l'elemento dal container</p>
     </div>
@@ -195,7 +199,9 @@
                                                     <tr>
                                                         <td  align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif; min-height: 20px;"  ng-drop="true" ng-drop-success="onDropComplete($data, $event)">
                                                    
-                                                          <span ng-repeat="obj in droppedObjects track by $index" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess($data,$event)"  ng-sorgente="reorder" ng-drop="true"  ng-drop-success="onDropCompleteReorder($index, $data, $event)" ng-bind-html="obj.contenuto" class="blocco">
+                                                          <span ng-repeat="obj in droppedObjects track by $index" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess($data,$event)"  ng-sorgente="reorder" ng-drop="true"  ng-drop-success="onDropCompleteReorder($index, $data, $event)"  class="blocco" >
+                                                          <div ng-bind-html="obj.contenuto" ng-show="obj.type!=='button'"></div>
+                                                          <div ng-show="obj.type==='button'"><button>{{obj.contenuto}}</button></div>
                                                           </span>
                                                         </td>
                                                     </tr>
