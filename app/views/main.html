@@ -1,11 +1,11 @@
-    <div style="width: 100%;height: 40px; position: relative; left: 140px">
+<div style="width: 10%; position: absolute; left: 40px; top: 40px; border: 1px solid black;">
         <h2>Draggable components:</h2>
-        <ul ng-repeat="obj in draggableObjects" ng-drag="true" ng-drag-data="obj" ng-sorgente="panel" >
-            <li style="clear: both; "><div ng-bind-html="obj.contenuto"></div> &nbsp;<a href="" ng-click="removeComponent(obj)">- Remove</a></li>
+        <ul ng-repeat="obj in draggableObjects" class="draglist" style="display:block" ng-drag="true" ng-drag-data="obj" ng-sorgente="panel" >
+            <li style="clear: both;" ng-bind-html="obj.contenuto"></li>
         </ul>
+        <p><strong>Nota:</strong>Se riordini trascina bene fuori l'elemento dal container</p>
     </div>
-
-<div>
+<div>    
     <frame>
         <html lang="en">
 
@@ -110,12 +110,14 @@
         }
 
         [ng-drag] {
-/*            width: 100px;
-            height: 100px;*/
+            width: 100%;
+            /*height: 100px;*/
             background: rgba(255, 0, 0, 0.5);
             text-align: center;
-            display: inline-block;
+            display: block;
             cursor: move;
+            list-style: none;
+            padding-left: 1em;
         }
 
         [ng-drag].drag-over {
@@ -141,34 +143,23 @@
             border: solid 5px red;
         }
 
-        [ng-drop].blocco {
-            display: inline;
-            padding: 0px;
-/*            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 200px;
-            height: 20px;
-            margin-left: -100px;
-            margin-top: -10px;*/
-        }
-
         [ng-drop] div {
             position: relative;
             z-index: 2;
         }
-
-        .draglist {
-            display: inline-block;
-            margin: 0 auto;
-            min-height: 40px;
-            background-color: red;
-        }
+        
         /*
         miei: UI
         */
         h2{
             margin: 0px;
+        }
+        
+
+        [ng-drop].blocco {
+        }
+        .draglist{
+            padding-right: 4px;
         }
 
             </style>
@@ -219,8 +210,8 @@
                                                         <td align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif;">
                                                             <img src="http://internations.github.com/antwort/images/grey-175x130.png" alt="Image Caption" border="0" hspace="0" vspace="0" style="vertical-align:top; padding-bottom:12px;" class="col-2-img">
                                                             <br>
-                                                            {{droppedObjects}}<hr>
-                                                            {{draggableObjects}}
+                                                            <ul ng-repeat="do in droppedObjects track by $index"><li>{{do.type}} - {{do.id}}</li></ul><hr>
+                                                            <!-- {{draggableObjects}} -->
                                                             <br>
                                                             <a href="#" style="color:#2469A0; font-weight:bold">I am Ishmael</a>
                                                             <br>White squalls? white whale, shirr! shirr! Here have I heard all their chat just now, and the white whale—shirr! shirr!—but spoken of once! and&hellip;
