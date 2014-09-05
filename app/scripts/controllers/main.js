@@ -55,29 +55,24 @@ angular.module('emailTemplateBuilderApp', ['ngSanitize', 'ngDraggable'])
 		var clone = function  (data) {
 				var el = {};
 				angular.copy(data, el);
-				el.id = $scope.droppedObjects.max('id', 1) + 1;
+				el.id = $scope.droppedObjects.max('id') + 1;
 				return el;
-		}
-		$scope.onDragSuccess = function(data, evt) {
-			console.log(' $scope.droppedObjects:onDragSuccess',  $scope.droppedObjects.length)
 		}
 
 		$scope.onDropCompleteReorder = function(index, obj, evt) {
-			if (obj.sorgente !== "panel") {
+			// TODO: refactoring! Come, non so! il controllo sul length serve per il remove dell'ultimo elemento
+			if (obj.sorgente !== "panel" && $scope.droppedObjects.length > 1) {
 				var otherObj = $scope.droppedObjects[index];
 				var otherIndex = $scope.droppedObjects.indexOf(obj);
 				$scope.droppedObjects[index] = obj;
 				$scope.droppedObjects[otherIndex] = otherObj;
 			}
 		}
-
-		$scope.removeComponent = function(obj) {
-		
-			var index = $scope.droppedObjects.indexOf(obj);
-			console.log(index)
+		$scope.onDropCompleteRemove = function (data, evt) {
+			var index = $scope.droppedObjects.indexOf(data);
 			if (index > -1) {
-			console.log(' $scope.droppedObjects:removeComponent',  $scope.droppedObjects)
 				$scope.droppedObjects.splice(index, 1);
 			}
 		}
+
 	});

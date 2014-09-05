@@ -9,7 +9,7 @@
     </ul>
     <div class="dropToRemoveArea">
         Drop down here to remove.
-        <div ng-drop="true" ng-drag="false" ng-drag-data="obj" ng-drop-success="removeComponent($data)" >
+        <div ng-drop="true" ng-drag="false" ng-drag-data="obj" ng-drop-success="onDropCompleteRemove($data, $event)" >
         </div>
     </div>
     <div>
@@ -115,7 +115,7 @@
             user-select: none;
             }
             [ng-drag] {
-            width: 100%;
+            /*width: 100%;*/
             /*height: 100px;*/
             background: rgba(255, 0, 0, 0.5);
             text-align: center;
@@ -189,15 +189,14 @@
                                                 <table border="0" cellspacing="0" cellpadding="0" width="260" align="left" class="col-2">
                                                     <tr>
                                                         <td  align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif; min-height: 20px;"  ng-drop="true" ng-drop-success="onDropComplete($data, $event)">
-                                                            
-                                                            <span ng-repeat="obj in droppedObjects track by obj.id" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess($data,$event)"  ng-sorgente="reorder" ng-drop="true"  ng-drop-success="onDropCompleteReorder($index, $data, $event)"  class="blocco" >
+                                                             
+                                                            <span ng-repeat="obj in droppedObjects track by $index" ng-drag="true" ng-drag-data="obj"  ng-sorgente="reorder" ng-drop="true"  ng-drop-success="onDropCompleteReorder($index, $data, $event)"  class="blocco" >
                                                             <div ng-bind-html="obj.contenuto" ng-show="obj.type!=='button'"></div>
                                                             <div ng-show="obj.type==='button'"><button>{{obj.contenuto}}</button></div>
                                                             </span>
                                                         </td>
                                                     </tr>
                                                 </table>
-                                                <div ng-drag-clone=""></div>
                                             </td>
                                             <td class="force-col" valign="top">
                                                 <!-- ### COLUMN 2 ### -->
