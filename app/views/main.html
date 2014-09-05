@@ -1,12 +1,32 @@
 <div style="width: 10%; position: absolute; left: 40px; top: 40px; border: 1px solid black;">
     <h2>Draggable components:</h2>
-    <ul ng-repeat="obj in draggableObjects" class="draglist" style="display:block" ng-drag="true" ng-drag-data="obj" ng-sorgente="panel" >
-        <li style="clear: both;" ng-bind-html="obj.contenuto" ng-show="obj.type!=='button'">
+    <ul ng-repeat="obj in draggableObjects track by $index" class="draglist" style="display:block" ng-drag="true" ng-drag-data="obj" ng-sorgente="panel" >
+        <li style="clear: both;" ng-bind-html="obj.contenuto" ng-show="obj.type!=='button'" >
         </li>
-        <li style="clear: both;"  ng-show="obj.type==='button'">
+        <li style="clear: both;"  ng-show="obj.type==='button'" >
             <button>{{obj.contenuto}}</button>
         </li>
     </ul>
+    <div>
+    <input type="button" name="" value=" + " ng-click="addDraggableElement = true ">
+    <div ng-show="addDraggableElement" >
+        <form name="formAddDraggable" ng-init="setFormScope(this)" novalidate>
+        <label for="Contenuto">Contenuto:
+            <input type="text" name="contenuto" value="" ng-model="newDraggable.contenuto" required>
+            <span style="color: red" ng-show="invalida && formAddDraggable.contenuto.$error.required">contenuto obbligatorio</span>
+        </label>
+        <label for="Tipo" style="clear:both">Tipo: 
+            <select name="" ng-init="newDraggable.type='testo'" ng-model="newDraggable.type" ng-options="type for type in ['testo', 'spacer', 'immagine', 'divider', 'button']">
+            </select> 
+        </label>
+        <label for="Allineamento"  style="clear:both" ng-init="newDraggable.allineamento='block'">Allineamento:<br />
+            <input type="radio" ng-model="newDraggable.allineamento" name="allineamentoBlock" value="block">Block <br/>
+            <input type="radio" ng-model="newDraggable.allineamento" name="allineamentoInline" value="inline">Inline <br/>
+        </label>
+        <input type="submit" ng-click="addNewDraggable(invalida = formAddDraggable.$invalid, newDraggable)" value="Salva" />
+        </form>
+    </div>
+    </div>
     <div class="dropToRemoveArea">
         Drop down here to remove.
         <div ng-drop="true" ng-drag="false" ng-drag-data="obj" ng-drop-success="onDropCompleteRemove($data, $event)" >
@@ -180,6 +200,7 @@
                                     <br>
                                     <div style="font-weight: bold; font-size: 18px; line-height: 24px; color: #D03C0F;">
                                         Quick Two Columns to Rows Demo
+                                        {{newDraggable}}
                                     </div>
                                     <br>
                                     <table border="0" cellpadding="0" cellspacing="0" class="columns-container">

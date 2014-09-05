@@ -75,4 +75,18 @@ angular.module('emailTemplateBuilderApp', ['ngSanitize', 'ngDraggable'])
 			}
 		}
 
+		// TODO: capire perche' questo!
+		$scope.setFormScope= function(scope){
+		   this.formScope = scope;
+		}
+
+		$scope.addNewDraggable = function(formInvalid, newDraggable) {
+			if(formInvalid)
+				return;
+			$scope.draggableObjects.push(angular.copy(newDraggable));
+			this.formScope.formAddDraggable.$setPristine();
+			this.formScope.newDraggable = {type: "testo", allineamento:"block"};
+			this.formScope.addDraggableElement = false; 
+		}
+
 	});
