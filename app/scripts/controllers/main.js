@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('emailTemplateBuilderApp', ['ngSanitize', 'ngDraggable'])
-	.controller('MainCtrl', function($scope, $sce, $filter) {
+	.controller('MainCtrl', function($rootScope, $scope, $sce, $filter) {
 
 		$scope.draggableObjects = [{
 			contenuto: 'Lorem ipsum <strong>dolor</strong> sit amet...',
@@ -95,4 +95,7 @@ angular.module('emailTemplateBuilderApp', ['ngSanitize', 'ngDraggable'])
 			if(index > -1)
 				$scope.draggableObjects.splice(index, 1);
 		};
+		$rootScope.$on('draggable:dblclick', function(dragEnabled, element, data) {
+			console.log(dragEnabled, element, data);
+		});
 	});
