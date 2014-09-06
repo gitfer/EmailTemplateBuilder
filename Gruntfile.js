@@ -22,7 +22,8 @@ module.exports = function (grunt) {
     yeoman: {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
-      dist: 'dist'
+      dist: 'dist',
+      ngDraggableCopyTask: 'ngDraggableLocal'
     },
 
     // Watches files for changes and runs tasks based on the changed files
@@ -33,7 +34,7 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-        tasks: ['newer:jshint:all'],
+        tasks: [ '<%= yeoman.ngDraggableCopyTask %>', 'newer:jshint:all'],
         options: {
           livereload: true
         }
@@ -57,8 +58,7 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-        ],
-        tasks: ['ngDraggable']
+        ]
       }
     },
 
@@ -343,6 +343,7 @@ module.exports = function (grunt) {
      shell: {
         updateNgDraggable: {
             command: function () {
+                grunt.log.ok('Sovrascrivo ngDraggable.js da repo pushato ' + new Date().toLocaleTimeString());
                 return 'bower update ngDraggable';
             }
         }
@@ -354,18 +355,29 @@ module.exports = function (grunt) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
-
+    if (target === 'local') {
+      grunt.config.set('yeoman.ngDraggableCopyTask', 'ngDraggableLocal');
+    }
+    if (target === 'repo') {
+      grunt.config.set('yeoman.ngDraggableCopyTask', 'ngDraggable');
+    }
     grunt.task.run([
       'clean:server',
       'bowerInstall',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
+      grunt.config.get('yeoman.ngDraggableCopyTask'),
       'watch'
     ]);
   });
-1
+
   grunt.registerTask('ngDraggable', ['shell:updateNgDraggable:command']);
+
+  grunt.registerTask('ngDraggableLocal', 'Copia ngDraggable.js da repo parallelo in bower_components', function() {
+      grunt.log.ok('Sovrascrivo ngDraggable.js da repo locale parallelo ' + new Date().toLocaleTimeString());
+      grunt.file.copy('../ngDraggable/ngDraggable.js', './app/bower_components/ngDraggable/ngDraggable.js');
+  });
 
   grunt.registerTask('server', function (target) {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
