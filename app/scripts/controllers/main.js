@@ -1,7 +1,5 @@
 'use strict';
-
-angular.module('emailTemplateBuilderApp', ['ngSanitize', 'ngDraggable'])
-	.controller('MainCtrl', function($rootScope, $scope, $sce, $filter) {
+	app.controller('MainCtrl', function($rootScope, $scope, $sce, $filter, _) {
 
 		$scope.draggableObjects = [{
 			contenuto: 'Lorem ipsum <strong>dolor</strong> sit amet...',
