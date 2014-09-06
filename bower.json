@@ -5,7 +5,7 @@
     "angular": "1.2.15",
     "json3": "~3.2.6",
     "es5-shim": "~2.1.0",
-    "ngDraggable": "git@github.com:gitfer/ngDraggable.git#Allineamento",
+    "ngDraggable": "git@github.com:gitfer/ngDraggable.git",
     "jquery": "~2.1.1",
     "angular-sanitize": "1.2.15"
   },
