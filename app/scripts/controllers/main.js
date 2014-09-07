@@ -1,15 +1,13 @@
 'use strict';
-
-angular.module('emailTemplateBuilderApp', ['ngSanitize', 'ngDraggable'])
-	.controller('MainCtrl', function($scope, $sce, $filter) {
+	app.controller('MainCtrl', function($rootScope, $scope, $sce, $filter, _) {
 
 		$scope.draggableObjects = [{
 			contenuto: 'Lorem ipsum <strong>dolor</strong> sit amet...',
 			type: 'testo',
 			allineamento: 'block'
-		},{
+		},{ 
 			contenuto: 'Lorem',
-			type: 'testo',
+			type: 'testo', 
 			allineamento: 'inline'
 		},{
 			contenuto: '<div style="display:block !important; clear:both; width:100%;"><div style="height: 60px"><br /><br /></div></div>',
@@ -37,7 +35,7 @@ angular.module('emailTemplateBuilderApp', ['ngSanitize', 'ngDraggable'])
 			if (data.sorgente === "panel") {
 				$scope.droppedObjects.push(clone(data));
 			}
-		}
+		}  
 		//TODO: refactoring
 		Array.prototype.max = function (property, max_value) {
 				
@@ -74,7 +72,7 @@ angular.module('emailTemplateBuilderApp', ['ngSanitize', 'ngDraggable'])
 				$scope.droppedObjects.splice(index, 1);
 			}
 		}
-
+ 
 		// TODO: capire perche' questo!
 		$scope.setFormScope= function(scope){
 		   this.formScope = scope;
@@ -89,4 +87,13 @@ angular.module('emailTemplateBuilderApp', ['ngSanitize', 'ngDraggable'])
 			this.formScope.addDraggableElement = false; 
 		}
 
+		$scope.removeDraggable = function(draggable) {
+			console.log('click', draggable)
+			var index = $scope.draggableObjects.indexOf(draggable);
+			if(index > -1)
+				$scope.draggableObjects.splice(index, 1);
+		};
+		$rootScope.$on('draggable:dblclick', function(dragEnabled, element, data) {
+			console.log(dragEnabled, element, data);
+		});
 	});

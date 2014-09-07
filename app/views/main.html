@@ -1,11 +1,12 @@
 <div style="width: 10%; position: absolute; left: 40px; top: 40px; border: 1px solid black;">
     <h2>Draggable components:</h2>
     <ul ng-repeat="obj in draggableObjects track by $index" class="draglist" style="display:block" ng-drag="true" ng-drag-data="obj" ng-sorgente="panel" >
-        <li style="clear: both;" ng-bind-html="obj.contenuto" ng-show="obj.type!=='button'" >
+        <li style="clear: both; min-height: 10px; min-width: 120px; " ng-bind-html="obj.contenuto" ng-show="obj.type!=='button'" >
         </li>
-        <li style="clear: both;"  ng-show="obj.type==='button'" >
-            <button>{{obj.contenuto}}</button>
+        <li style="clear: both; "  ng-show="obj.type==='button'" >
+            <button style="min-height: 10px; min-width: 120px;"> {{obj.contenuto}}</button>
         </li>
+        <a href="#" ng-click="removeDraggable(obj)" style="background-color: #dedede" > Rimuovimi </a>
     </ul>
     <div>
     <input type="button" name="" value=" + " ng-click="addDraggableElement = true ">
@@ -185,6 +186,8 @@
             width: 100%;
             background-color: #00bb00;
             }
+            [contenteditable="true"] { padding: 10px; outline: 2px dashed #CCC; }
+            [contenteditable="true"]:hover { outline: 2px dashed #0090D2; }
             </style>
         </head>
         <body style="margin:0; padding:10px 0;" bgcolor="#ebebeb" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
