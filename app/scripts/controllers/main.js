@@ -111,10 +111,7 @@ app.controller('MainCtrl', function($rootScope, $scope, $sce, $filter, _) {
         }
     };
     $scope.$on('setEdit:dblclick', function(data, contenuto) {
-        // $scope.$apply(function() {
-        console.log('data post', contenuto.contenuto);
         $scope.editvalue = contenuto.contenuto;
-        // });
     });
     
     $scope.$on('finishEdit:dblclick', function(obj, data) {
