@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('emailTemplateBuilderApp', ['ngSanitize', 'ngDraggable']);
+var app = angular.module('emailTemplateBuilderApp', ['ngSanitize', 'ngDraggable', 'ui.tinymce']);
 
 app.factory('_', ['$window',
       function($window) {
