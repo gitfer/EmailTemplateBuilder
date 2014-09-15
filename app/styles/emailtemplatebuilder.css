@@ -1,0 +1,88 @@
+body {
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+table {
+    border-spacing: 0;
+}
+table td {
+    border-collapse: collapse;
+}
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+[ng-drag] {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+[ng-drag] {
+    /*width: 100%;*/
+    /*height: 100px;*/
+    background: rgba(255, 0, 0, 0.5);
+    text-align: center;
+    display: block;
+    cursor: move;
+    list-style: none;
+    padding-left: 1em;
+}
+[ng-drag].drag-over {
+    border: solid 1px red;
+}
+[ng-drag].dragging {
+    opacity: 0.5;
+}
+[ng-drop] {
+    background: rgba(1, 1, 1, 0);
+    text-align: center;
+    /*display: block;*/
+    position: relative;
+    padding: 20px;
+    /*width: 140px;
+    height: 140px;*/
+    /*float: left;*/
+}
+[ng-drop].drag-enter {
+    border: solid 5px red;
+}
+[ng-drop] div {
+    position: relative;
+    z-index: 2;
+}
+/*
+    miei: UI
+    */
+
+h2 {
+    margin: 0px;
+}
+[ng-drop].blocco {} .draglist {
+    padding-right: 4px;
+}
+#dropToRemoveArea {
+    height: 90px;
+    width: 100%;
+    background-color: #00bb00;
+}
+[contenteditable="true"] {
+    padding: 10px;
+    outline: 2px dashed #CCC;
+}
+[contenteditable="true"]:hover {
+    outline: 2px dashed #0090D2;
+}
+#toolsPanel {
+    width: 12%;
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    border: 1px solid black;
+}

@@ -1,5 +1,9 @@
 'use strict';
-app.controller('MainCtrl', function($rootScope, $scope, $sce, $filter, _) {
+app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _) {
+    
+    $scope.returnTemplate = function() {
+        return 'views/templates/' + $route.current.params.template;
+    };
     $scope.tinymceOptions = {
         directionality: 'ltr',
         plugins: 'code',

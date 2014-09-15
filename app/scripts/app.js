@@ -15,7 +15,7 @@ app.config(['$routeProvider', function ($routeProvider) {
 		templateUrl: 'views/selectTemplate.html',
 		controller: 'TemplateCtrl'
 	})
-	.when('/templates/:name', {
+	.when('/templates/:template', {
 		templateUrl: 'views/main.html',
 		controller: 'MainCtrl'
 	})
