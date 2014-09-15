@@ -12,6 +12,10 @@ app.factory('_', ['$window',
 app.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
 	.when('/', {
+		templateUrl: 'views/selectTemplate.html',
+		controller: 'TemplateCtrl'
+	})
+	.when('/templates/:name', {
 		templateUrl: 'views/main.html',
 		controller: 'MainCtrl'
 	})

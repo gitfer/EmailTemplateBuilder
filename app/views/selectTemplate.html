@@ -1,0 +1,11 @@
+<h2>Seleziona il template della email</h2>
+<ul ng-repeat="template in templates" style="display:inline; overflow: auto;padding-left: 0px;">
+    <li style="text-align: center;float: left;list-style: none;">
+    	<a href ng-href="#/templates/{{template.name}}">
+        <div>
+            <img ng-src="images/templates/{{template.img}}"></img>
+        </div>
+            {{template.name}}
+        </a>
+    </li>
+</ul>
