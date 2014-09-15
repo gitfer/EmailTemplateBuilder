@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('emailTemplateBuilderApp', ['ngSanitize', 'ngDraggable', 'ui.tinymce']);
+var app = angular.module('emailTemplateBuilderApp', ['ngSanitize', 'ngRoute', 'ngDraggable', 'ui.tinymce']);
 
 app.factory('_', ['$window',
       function($window) {
@@ -8,3 +8,10 @@ app.factory('_', ['$window',
         return $window._;
       }
     ]);
+
+app.config(['$routeProvider', function ($routeProvider) {
+	$routeProvider.when('/', {
+		templateUrl: 'views/main.html',
+		controller: 'MainCtrl'
+	});
+}]);
