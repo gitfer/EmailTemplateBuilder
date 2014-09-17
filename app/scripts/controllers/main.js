@@ -10,6 +10,7 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _
         toolbar: 'styleselect bold italic print forecolor backcolor',
         setup: function(ed) {
             ed.on('change', function() {
+                console.log('change', ed.getContent());
                 $scope.$apply(function() {
                         $scope.editvalue = ed.getContent();
                 });
@@ -123,7 +124,12 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _
             id: data.data.id
         });
         $scope.$apply(function() {
-            el[0].contenuto = $scope.editvalue;
+            if(el[0].type !== 'testo' && el[0].type !== 'immagine'){
+                el[0].contenuto = String($scope.editvalue).replace(/<[^>]+>/gm, '');
+            }
+            else{
+                el[0].contenuto = $scope.editvalue;
+            }
         });
     });
 });
