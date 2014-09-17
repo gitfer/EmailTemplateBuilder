@@ -374,9 +374,10 @@ module.exports = function (grunt) {
 
   grunt.registerTask('ngDraggable', ['shell:updateNgDraggable:command']);
 
-  grunt.registerTask('ngDraggableLocal', 'Copia ngDraggable.js da repo parallelo in bower_components', function() {
-      grunt.log.ok('Sovrascrivo ngDraggable.js da repo locale parallelo ' + new Date().toLocaleTimeString());
+  grunt.registerTask('ngDraggableLocal', 'Copia ngDraggable.js + ngDraggableElement.html da repo parallelo in bower_components', function() {
+      grunt.log.ok('Sovrascrivo ngDraggable.js e template/ngDraggable.html da repo locale parallelo ' + new Date().toLocaleTimeString());
       grunt.file.copy('../ngDraggable/ngDraggable.js', './app/bower_components/ngDraggable/ngDraggable.js');
+      grunt.file.copy('../ngDraggable/template/ngDraggableElement.html', './app/bower_components/ngDraggable/template/ngDraggableElement.html');
   });
 
   grunt.registerTask('server', function (target) {

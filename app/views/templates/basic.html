@@ -822,19 +822,7 @@ body.outlook p {
 
                       <table >
                         <tr>
-
-                                                    <td align="left" valign="top" style="font-size:13px; line-height: 20px; font-family: Arial, sans-serif; min-height: 20px;" ng-drop="true" ng-drop-success="onDropComplete($data, $event)">
-
-                                                        <span ng-repeat="obj in droppedObjects track by $index" ng-drag="true" ng-drag-data="obj" ng-sorgente="reorder" ng-drop="true" ng-drop-success="onDropCompleteReorder($index, $data, $event)" class="blocco">
-                                                            <div class="contentEl">
-                                                                <div ng-bind-html="obj.contenuto" ng-show="obj.type!=='button' && obj.type!=='textarea' "></div>
-                                                                <div ng-show="obj.type==='button'">
-                                                                    <button>{{obj.contenuto}}</button>
-                                                                </div>
-                                                            </div>
-                                                        </span>
-                                                    </td>
-
+                          <ng-draggable-element></ng-draggable-element>
                           <td class="expander"></td>
                         </tr>
                       </table>
