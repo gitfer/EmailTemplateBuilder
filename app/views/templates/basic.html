@@ -822,7 +822,8 @@ body.outlook p {
 
                       <table >
                         <tr>
-                          <ng-draggable-element></ng-draggable-element>
+
+                          <ng-draggable-element id-area-droppabile="1" class="panel" droppa="onDropComplete($data, $event)" riordina="onDropCompleteReorder($index, $data, $event)"  elementidroppati="droppedObjects.1"></ng-draggable-element>
                           <td class="expander"></td>
                         </tr>
                       </table>
@@ -837,9 +838,8 @@ body.outlook p {
 
                       <table class="twelve columns">
                         <tr>
-                          <td class="panel">
-                            <p>Phasellus dictum sapien a neque luctus cursus. Pellentesque sem dolor, fringilla et pharetra vitae. <a href="#">Click it! »</a></p>
-                          </td>
+                      
+                          <ng-draggable-element  id-area-droppabile="2" class="panel" droppa="onDropComplete($data, $event)" riordina="onDropCompleteReorder($index, $data, $event)" elementidroppati="droppedObjects.2"></ng-draggable-element>
                           <td class="expander"></td>
                         </tr>
                       </table>

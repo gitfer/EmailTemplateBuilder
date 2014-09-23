@@ -10,7 +10,6 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _
         toolbar: 'styleselect bold italic print forecolor backcolor',
         setup: function(ed) {
             ed.on('change', function() {
-                console.log('change', ed.getContent());
                 $scope.$apply(function() {
                         $scope.editvalue = ed.getContent();
                 });
@@ -45,21 +44,20 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _
     }];
     $scope.editvalue = '';
 
-    $scope.droppedObjects = [];
+    $scope.droppedObjects = {};
 
-    $scope.onDropComplete = function(data) {
+    $scope.onDropComplete = function(data, event) {
         if (data.sorgente === 'panel') {
-            $scope.droppedObjects.push(clone(data));
+            if (angular.isUndefined($scope.droppedObjects[data.ngDropIdCollection] )){
+                $scope.droppedObjects[data.ngDropIdCollection] = [];
+            }
+            $scope.droppedObjects[data.ngDropIdCollection].push(clone(data));
         }
     };
+
     //TODO: refactoring
-    Array.prototype.max = function(property, maxValue) {
-
-        if (this.length === 0) {
-            return 0;
-        }
-
-        var max = maxValue || 1;
+    Array.prototype.max = function(property, maxValue) {  
+        var max = maxValue || 0;
         for (var i = 0, len = this.length; i < len; i++) {
             if (this[i][property] >= max) {
                 max = this[i][property];
@@ -69,25 +67,25 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _
     };
 
     var clone = function(data) {
-        var el = {};
+        var el = { };
         angular.copy(data, el);
-        el.id = $scope.droppedObjects.max('id') + 1;
+        el.id = $scope.droppedObjects[data.ngDropIdCollection].max('id') + 1;
         return el;
     };
 
-    $scope.onDropCompleteReorder = function(index, obj) {
+    $scope.onDropCompleteReorder = function(index, data) {
         // TODO: refactoring! Come, non so! il controllo sul length serve per il remove dell'ultimo elemento
-        if (obj.sorgente !== 'panel' && $scope.droppedObjects.length > 1) {
-            var otherObj = $scope.droppedObjects[index];
-            var otherIndex = $scope.droppedObjects.indexOf(obj);
-            $scope.droppedObjects[index] = obj;
-            $scope.droppedObjects[otherIndex] = otherObj;
+        if (data.sorgente !== 'panel' && $scope.droppedObjects[data.ngDropIdCollection].length > 1) {
+            var otherObj = $scope.droppedObjects[data.ngDropIdCollection][index];
+            var otherIndex = $scope.droppedObjects[data.ngDropIdCollection].indexOf(data);
+            $scope.droppedObjects[data.ngDropIdCollection][index] = data;
+            $scope.droppedObjects[data.ngDropIdCollection][otherIndex] = otherObj;
         }
     };
     $scope.onDropCompleteRemove = function(data) {
-        var index = $scope.droppedObjects.indexOf(data);
+        var index = $scope.droppedObjects[data.idCollezione].indexOf(data);
         if (index > -1) {
-            $scope.droppedObjects.splice(index, 1);
+            $scope.droppedObjects[data.idCollezione].splice(index, 1);
         }
     };
 
