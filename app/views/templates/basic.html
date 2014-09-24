@@ -822,7 +822,7 @@ body.outlook p {
 
                       <table class="twelve columns">
                         <tr>
-                          <ng-draggable-element id-area-droppabile="1" class="panel" droppa="onDropComplete($data, $event)" riordina="onDropCompleteReorder($index, $data, $event)"  elementidroppati="droppedObjects.1"></ng-draggable-element>
+                          <ng-draggable-element id-area-droppabile="1" class-name="panel" droppa="onDropComplete($data, $event)" riordina="onDropCompleteReorder($index, $data, $event)"  elementidroppati="droppedObjects.1"></ng-draggable-element>
                           <td class="expander"></td>
                         </tr>
                       </table>
@@ -838,7 +838,7 @@ body.outlook p {
                       <table class="twelve columns">
                         <tr>
                       
-                          <ng-draggable-element  id-area-droppabile="2" class="panel" droppa="onDropComplete($data, $event)" riordina="onDropCompleteReorder($index, $data, $event)" elementidroppati="droppedObjects.2"></ng-draggable-element>
+                          <ng-draggable-element  id-area-droppabile="2" class-name="panel" droppa="onDropComplete($data, $event)" riordina="onDropCompleteReorder($index, $data, $event)" elementidroppati="droppedObjects.2"></ng-draggable-element>
                           <td class="expander"></td>
                         </tr>
                       </table>
@@ -915,11 +915,15 @@ body.outlook p {
 
                       <table class="twelve columns">
                         <tr>
-                          <td align="center">
+                        <!-- Il codice commentato qua sotto viene mantenuto come esempio di cosa si vuole ottenere 
+                        e come ottenerlo -->
+                          <!-- <td align="center">
                             <center>
-                              <p style="text-align:center;"><a href="#">Terms</a> | <a href="#">Privacy</a> | <a href="#">Unsubscribe</a></p>
+                              <p style="text-align:center;"><a href="#">Terms</a> | <a href="#">Privacy</a> | <a href="#">Unsubscribe</a>
+                              </p>
                             </center>
-                          </td>
+                          </td> -->
+                          <ng-draggable-element type="InlineCenter" id-area-droppabile="3" class-name="white" droppa="onDropComplete($data, $event)" riordina="onDropCompleteReorder($index, $data, $event)" elementidroppati="droppedObjects.3"></ng-draggable-element> 
                           <td class="expander"></td>
                         </tr>
                       </table>

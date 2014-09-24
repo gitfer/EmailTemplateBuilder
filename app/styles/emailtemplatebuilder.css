@@ -53,10 +53,7 @@ table td {
 [ng-drop].drag-enter {
     border: solid 5px red;
 }
-[ng-drop] div {
-    position: relative;
-    z-index: 2;
-}
+
 /*
     miei: UI
     */
@@ -64,7 +61,7 @@ table td {
 h2 {
     margin: 0px;
 }
-[ng-drop].blocco {} .draglist {
+.draglist {
     padding-right: 20px;
 }
 #dropToRemoveArea {
@@ -89,4 +86,8 @@ h2 {
 
 #toolsPanel .descrizioneTool {
     border: 1px solid black;
+}
+
+[ng-drop].white {
+    padding: 20px !important;
 }
