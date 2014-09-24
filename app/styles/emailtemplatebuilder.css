@@ -65,7 +65,7 @@ h2 {
     margin: 0px;
 }
 [ng-drop].blocco {} .draglist {
-    padding-right: 4px;
+    padding-right: 20px;
 }
 #dropToRemoveArea {
     height: 90px;
@@ -84,5 +84,9 @@ h2 {
     position: absolute;
     left: 40px;
     top: 40px;
+    border: 1px solid black;
+}
+
+#toolsPanel .descrizioneTool {
     border: 1px solid black;
 }
