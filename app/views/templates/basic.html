@@ -822,7 +822,9 @@ body.outlook p {
 
                       <table class="twelve columns">
                         <tr>
-                          <ng-draggable-element id-area-droppabile="1" class-name="panel" droppa="onDropComplete($data, $event)" riordina="onDropCompleteReorder($index, $data, $event)"  elementidroppati="droppedObjects.1"></ng-draggable-element>
+                          <td class="panel">
+                          <ng-draggable-element id-area-droppabile="1" droppa="onDropComplete($data, $event)" riordina="onDropCompleteReorder($index, $data, $event)" elementidroppati="droppedObjects.1"></ng-draggable-element>
+                          </td>
                           <td class="expander"></td>
                         </tr>
                       </table>
@@ -838,7 +840,9 @@ body.outlook p {
                       <table class="twelve columns">
                         <tr>
                       
-                          <ng-draggable-element  id-area-droppabile="2" class-name="panel" droppa="onDropComplete($data, $event)" riordina="onDropCompleteReorder($index, $data, $event)" elementidroppati="droppedObjects.2"></ng-draggable-element>
+                          <td class="panel">
+                          <ng-draggable-element id-area-droppabile="2" droppa="onDropComplete($data, $event)" riordina="onDropCompleteReorder($index, $data, $event)" elementidroppati="droppedObjects.2"></ng-draggable-element>
+                          </td>
                           <td class="expander"></td>
                         </tr>
                       </table>
@@ -923,7 +927,10 @@ body.outlook p {
                               </p>
                             </center>
                           </td> -->
-                          <ng-draggable-element type="InlineCenter" id-area-droppabile="3" class-name="white" droppa="onDropComplete($data, $event)" riordina="onDropCompleteReorder($index, $data, $event)" elementidroppati="droppedObjects.3"></ng-draggable-element> 
+                          <td class="center">
+                            
+                          <ng-draggable-element type="InlineCenter" style-inline="padding-left: 0px;padding-right: 0px;" id-area-droppabile="3" droppa="onDropComplete($data, $event)" riordina="onDropCompleteReorder($index, $data, $event)" elementidroppati="droppedObjects.3"></ng-draggable-element>
+                          </td>
                           <td class="expander"></td>
                         </tr>
                       </table>
