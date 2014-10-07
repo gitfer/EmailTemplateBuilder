@@ -33,6 +33,8 @@ table td {
     cursor: move;
     list-style: none;
     padding-left: 1em;
+    min-width: 180px;
+    min-height: 40px;
 }
 [ng-drag].drag-over {
     border: solid 1px red;

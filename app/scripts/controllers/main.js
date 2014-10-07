@@ -1,6 +1,6 @@
 'use strict';
 app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _) {
-    
+
     $scope.returnTemplate = function() {
         return 'views/templates/' + $route.current.params.template;
     };
@@ -11,7 +11,7 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _
         setup: function(ed) {
             ed.on('change', function() {
                 $scope.$apply(function() {
-                        $scope.editvalue = ed.getContent();
+                    $scope.editvalue = ed.getContent();
                 });
             });
         }
@@ -22,25 +22,9 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _
         type: 'testo',
         allineamento: 'block'
     }, {
-        contenuto: 'Lorem',
+        contenuto: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx',
         type: 'testo',
-        allineamento: 'inline'
-    }, {
-        contenuto: '<div style="display:block !important; clear:both; width:100%;"><div style="height: 60px"><br /><br /></div></div>',
-        type: 'spacer',
         allineamento: 'block'
-    }, {
-        contenuto: '<div style="display:block !important; clear:both; width:100%; height: 30px;"><img src="/images/yeoman.png"></img></div>',
-        type: 'immagine',
-        allineamento: 'block'
-    }, {
-        contenuto: '<div style="display:block !important; clear:both; width:100%; height: 30px;padding: 40px !important;"><hr style="display:block; clear:both; height: inherit;" ></div>',
-        type: 'divider',
-        allineamento: 'block'
-    }, {
-        contenuto: 'Cliccami',
-        allineamento: 'block',
-        type: 'button'
     }];
     $scope.editvalue = '';
 
@@ -48,7 +32,7 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _
 
     $scope.onDropComplete = function(data, event) {
         if (data.sorgente === 'panel') {
-            if (angular.isUndefined($scope.droppedObjects[data.ngDropIdCollection] )){
+            if (angular.isUndefined($scope.droppedObjects[data.ngDropIdCollection])) {
                 $scope.droppedObjects[data.ngDropIdCollection] = [];
             }
             $scope.droppedObjects[data.ngDropIdCollection].push(clone(data));
@@ -56,7 +40,7 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _
     };
 
     //TODO: refactoring
-    Array.prototype.max = function(property, maxValue) {  
+    Array.prototype.max = function(property, maxValue) {
         var max = maxValue || 0;
         for (var i = 0, len = this.length; i < len; i++) {
             if (this[i][property] >= max) {
@@ -67,7 +51,7 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _
     };
 
     var clone = function(data) {
-        var el = { };
+        var el = {};
         angular.copy(data, el);
         el.id = $scope.droppedObjects[data.ngDropIdCollection].max('id') + 1;
         return el;
@@ -83,9 +67,10 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _
         }
     };
     $scope.onDropCompleteRemove = function(data) {
-        var index = $scope.droppedObjects[data.idCollezione].indexOf(data);
+        var idCollezione = parseInt(data.idCollezione);
+        var index = $scope.droppedObjects[idCollezione].indexOf(data);
         if (index > -1) {
-            $scope.droppedObjects[data.idCollezione].splice(index, 1);
+            $scope.droppedObjects[idCollezione].splice(index, 1);
         }
     };
 
@@ -109,25 +94,37 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _
 
     $scope.removeDraggable = function(draggable) {
         var index = $scope.draggableObjects.indexOf(draggable);
-        if (index > -1){
+        if (index > -1) {
             $scope.draggableObjects.splice(index, 1);
         }
     };
     $scope.$on('setEdit:dblclick', function(data, contenuto) {
         $scope.editvalue = contenuto.contenuto;
     });
-    
+
     $scope.$on('finishEdit:dblclick', function(obj, data) {
-        var el = _.where($scope.droppedObjects, {
+        var idCollezione = parseInt(data.data.idCollezione);
+        var el = _.where($scope.droppedObjects[idCollezione], {
             id: data.data.id
         });
         $scope.$apply(function() {
-            if(el[0].type !== 'testo' && el[0].type !== 'immagine'){
-                el[0].contenuto = String($scope.editvalue).replace(/<[^>]+>/gm, '');
+            if (el[0].type !== 'testo' && el[0].type !== 'immagine') {
+                el[0].contenuto = String(data.data.contenuto).replace(/<[^>]+>/gm, '');
+            } else {
+                el[0].contenuto = data.data.contenuto;
             }
-            else{
-                el[0].contenuto = $scope.editvalue;
-            }
+        });
+    });
+
+    $scope.$on('idEditor:changed', function(obj, data) {
+        console.log('idEditor:changed', data.idCollection, data.id, data.idEditor)
+        var idCollezione = parseInt(data.idCollection);
+        var el = _.where($scope.droppedObjects[idCollezione], {
+            id: data.id
+        });
+        $scope.$apply(function() {
+            if (el[0] !== undefined)
+                el[0].idEditor = data.idEditor;
         });
     });
 });

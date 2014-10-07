@@ -823,7 +823,7 @@ body.outlook p {
                       <table class="twelve columns">
                         <tr>
                           <td class="panel">
-                          <ng-draggable-element id-area-droppabile="1" droppa="onDropComplete($data, $event)" riordina="onDropCompleteReorder($index, $data, $event)" elementidroppati="droppedObjects.1"></ng-draggable-element>
+                          <ng-draggable-element  style-inline="width: 400px" id-area-droppabile="1" droppa="onDropComplete($data, $event)" riordina="onDropCompleteReorder($index, $data, $event)" elementidroppati="droppedObjects.1"></ng-draggable-element>
                           </td>
                           <td class="expander"></td>
                         </tr>
@@ -841,7 +841,10 @@ body.outlook p {
                         <tr>
                       
                           <td class="panel">
-                          <ng-draggable-element id-area-droppabile="2" droppa="onDropComplete($data, $event)" riordina="onDropCompleteReorder($index, $data, $event)" elementidroppati="droppedObjects.2"></ng-draggable-element>
+                          <!-- <ng-draggable-element id-area-droppabile="2" droppa="onDropComplete($data, $event)" riordina="onDropCompleteReorder($index, $data, $event)" elementidroppati="droppedObjects.2"></ng-draggable-element>
+                           -->
+                          {{editValue}}
+                          <ul ng-repeat="(chiave, valore) in droppedObjects"><li ng-repeat="obj in valore">{{obj.contenuto}} - {{obj.idEditor}}</li></ul>
                           </td>
                           <td class="expander"></td>
                         </tr>
