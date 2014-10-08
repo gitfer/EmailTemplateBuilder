@@ -13,7 +13,12 @@ app.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
 	.when('/', {
 		templateUrl: 'views/selectTemplate.html',
-		controller: 'TemplateCtrl'
+		controller: 'TemplateCtrl',
+		resolve: {
+			serverTemplates: function (templateService) {
+				return templateService.loadTemplates();
+			}
+		}
 	})
 	.when('/templates/:template', {
 		templateUrl: 'views/main.html',
@@ -21,3 +26,13 @@ app.config(['$routeProvider', function ($routeProvider) {
 	})
 	.otherwise({ redirectTo: '/error' });
 }]);
+app.service('templateService', ['$http', function ($http) {
+	return {
+		loadTemplates: function () {
+			return $http.get('http://localhost:3000/templates').success(function (data) {
+				console.log(data.length + ' provenienti dal server');
+				return data;
+			});
+		}
+	};	
+}])

@@ -1,4 +1,4 @@
-app.controller('TemplateCtrl', ['$scope', function ($scope) {
+app.controller('TemplateCtrl', ['$scope', 'serverTemplates', function ($scope, serverTemplates) {
 	$scope.selectedTemplate='basic';
 	$scope.templates = [
 	{
@@ -22,4 +22,10 @@ app.controller('TemplateCtrl', ['$scope', function ($scope) {
 		tmpl: 'sidebar-hero.html'
 	},
 	];
+	var mergeTemplates = function () {
+		$scope.templates = _.merge($scope.templates, _.map(serverTemplates.data, function (template) {
+			return { name: template.name, img: '', tmpl: template.tmpl}
+		}));
+	};
+	mergeTemplates();
 }]);
