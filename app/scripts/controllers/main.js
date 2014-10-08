@@ -126,4 +126,7 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _
                 el[0].idEditor = data.idEditor;
         });
     });
+    $scope.getHtml = function () {
+        $rootScope.$broadcast('getHtml');
+    }
 });

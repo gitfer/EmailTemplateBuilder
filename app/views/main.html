@@ -42,11 +42,14 @@
     <div>
         <p>
             <strong>Nota:</strong>Se riordini trascina bene fuori l'elemento dal container</p>
+            <button ng-click="getHtml()">Get HTML!</button>
     </div>
 </div>
 <div style="position:relative; left: 20%; max-width:600px">
     <frame>
+        <ng-capture-html ng-persist="true">
         <div ng-include="returnTemplate()">
         </div>
+        </ng-capture-html>
     </frame>
 </div>
