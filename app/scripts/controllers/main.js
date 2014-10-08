@@ -103,7 +103,7 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _
     });
 
     $scope.$on('finishEdit:dblclick', function(obj, data) {
-        var idCollezione = parseInt(data.data.idCollezione);
+        var idCollezione = parseInt(data.data.ngDropIdCollection);
         var el = _.where($scope.droppedObjects[idCollezione], {
             id: data.data.id
         });
@@ -117,7 +117,6 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _
     });
 
     $scope.$on('idEditor:changed', function(obj, data) {
-        console.log('idEditor:changed', data.idCollection, data.id, data.idEditor)
         var idCollezione = parseInt(data.idCollection);
         var el = _.where($scope.droppedObjects[idCollezione], {
             id: data.id
