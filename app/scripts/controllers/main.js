@@ -1,8 +1,9 @@
 'use strict';
-app.controller('MainCtrl', function($route, $rootScope, $scope, $filter, _) {
+app.controller('MainCtrl', function($route, $rootScope, $scope, $filter, _, serverModels) {
 
     $scope.returnTemplate = function() {
-        return 'views/templates/' + $route.current.params.template;
+        var template = $route.current.params.template === undefined ? 'views/selectTemplate.html' : 'views/templates/' + $route.current.params.template;
+        return template;
     };
 
     $scope.draggableObjects = [{
@@ -41,7 +42,6 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $filter, _) {
         }
         return max;
     };
-
     var clone = function(data) {
         var el = {};
         angular.copy(data, el);
@@ -118,7 +118,38 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $filter, _) {
                 el[0].idEditor = data.idEditor;
         });
     });
-    $scope.getHtml = function () {
-        $rootScope.$broadcast('getHtml');
-    }
+    $scope.getHtml = function() {
+        $rootScope.$broadcast('getHtml', {modelDropped: $scope.droppedObjects, modelDraggable: $scope.draggableObjects});
+    };
+
+    var merge = function(existingModel, serverModel) {
+        if (existingModel instanceof Array) {
+            existingModel.push(serverModel);
+            existingModel = _.flatten(existingModel);
+        } else {
+            existingModel = _.merge(existingModel, serverModel);
+        }
+    };
+
+    var mergeDO = function(serverModel) {
+        _.forEach(serverModel, function (objServer) {
+            var found = false;
+            for (var i = $scope.draggableObjects.length - 1; i >= 0; i--) {
+                var obj = $scope.draggableObjects[i];
+               if(obj.contenuto === objServer.contenuto && obj.type === objServer.type && obj.allineamento === objServer.allineamento){
+                    found = true;
+                    break;
+               }
+            };
+            if(!found){
+                $scope.draggableObjects.push(objServer);
+            }
+        });
+    };
+
+    var modelDraggable = serverModels.data[0] !== undefined ? serverModels.data[0].model.modelDraggable : [];
+    var modelDropped = serverModels.data[0] !== undefined ? serverModels.data[0].model.modelDropped : {};
+    mergeDO(modelDraggable);
+    merge($scope.droppedObjects, modelDropped);
+
 });
