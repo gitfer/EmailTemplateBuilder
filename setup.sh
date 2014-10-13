@@ -6,6 +6,12 @@ command -v bower >/dev/null 2>&1 || { echo >&2 "I require bower but it's not ins
 command -v mongod >/dev/null 2>&1 || { echo >&2 "I require mongod but it's not installed.  Aborting."; exit 1; }
 command -v grunt >/dev/null 2>&1 || { echo >&2 "I require grunt but it's not installed.  Aborting."; exit 1; }
 
-cd .. && mkdir angularUtils && cd angularUtils && git clone git@github.com:gitfer/angularUtils.git && 
-cd .. && mkdir ngDraggable && cd ngDraggable && git clone git@github.com:gitfer/ngDraggable.git && 
-cd EmailTemplateBuilder && ./runServer.sh && grunt serve:local
+cd .. && git clone git@github.com:gitfer/angularUtils.git &&
+git clone git@github.com:gitfer/ngDraggable.git &&
+cd EmailTemplateBuilder && bower install &&
+
+red='\e[0;31m'
+green='\e[0;32m'
+color=${green}
+NC='\e[0m' # No Color
+echo -e "${color}===================================================================\nSetup finished. Now run runServer.sh and then grunt serve:local in another shell\n===================================================================${NC}"

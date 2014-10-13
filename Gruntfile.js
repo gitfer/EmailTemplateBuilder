@@ -392,7 +392,7 @@ module.exports = function (grunt) {
       grunt.file.copy('../ngDraggable/template/ngDraggableElementInlineCenter.html', './app/bower_components/ngDraggable/template/ngDraggableElementInlineCenter.html');
   });
 
-  grunt.registerTask('ngDraggable', ['shell:updateAngularUtils:command']);
+  grunt.registerTask('angularUtils', ['shell:updateAngularUtils:command']);
 
   grunt.registerTask('angularUtilsLocal', 'Copia angularUtils.js', function() {
       grunt.log.ok('Sovrascrivo angularUtils.js da repo locale parallelo ' + new Date().toLocaleTimeString());
