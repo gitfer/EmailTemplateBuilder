@@ -23,7 +23,8 @@ module.exports = function (grunt) {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
       dist: 'dist',
-      ngDraggableCopyTask: 'ngDraggableLocal'
+      ngDraggableCopyTask: 'ngDraggableLocal',
+      angularUtilsCopyTask: 'angularUtilsLocal'
     },
 
     // Watches files for changes and runs tasks based on the changed files
@@ -34,7 +35,7 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-        tasks: [ '<%= yeoman.ngDraggableCopyTask %>', 'newer:jshint:all'],
+        tasks: [ '<%= yeoman.angularUtilsCopyTask %>', '<%= yeoman.ngDraggableCopyTask %>', 'newer:jshint:all'],
         options: {
           livereload: true
         }
@@ -346,6 +347,12 @@ module.exports = function (grunt) {
                 grunt.log.ok('Sovrascrivo ngDraggable.js da repo pushato ' + new Date().toLocaleTimeString());
                 return 'bower update ngDraggable';
             }
+        },
+        updateAngularUtils: {
+            command: function () {
+                grunt.log.ok('Sovrascrivo angularUtils.js da repo pushato ' + new Date().toLocaleTimeString());
+                return 'bower update angularUtils';
+            }
         }
     }
   });
@@ -357,9 +364,11 @@ module.exports = function (grunt) {
     }
     if (target === 'local') {
       grunt.config.set('yeoman.ngDraggableCopyTask', 'ngDraggableLocal');
+      grunt.config.set('yeoman.angularUtilsCopyTask', 'angularUtilsLocal');
     }
     if (target === 'repo') {
       grunt.config.set('yeoman.ngDraggableCopyTask', 'ngDraggable');
+      grunt.config.set('yeoman.angularUtilsCopyTask', 'angularUtils');
     }
     grunt.task.run([
       'clean:server',
@@ -368,6 +377,7 @@ module.exports = function (grunt) {
       'autoprefixer',
       'connect:livereload',
       grunt.config.get('yeoman.ngDraggableCopyTask'),
+      grunt.config.get('yeoman.angularUtilsCopyTask'),
       'watch'
     ]);
   });
@@ -380,6 +390,13 @@ module.exports = function (grunt) {
       // TODO: wildcards
       grunt.file.copy('../ngDraggable/template/ngDraggableElement.html', './app/bower_components/ngDraggable/template/ngDraggableElement.html');
       grunt.file.copy('../ngDraggable/template/ngDraggableElementInlineCenter.html', './app/bower_components/ngDraggable/template/ngDraggableElementInlineCenter.html');
+  });
+
+  grunt.registerTask('ngDraggable', ['shell:updateAngularUtils:command']);
+
+  grunt.registerTask('angularUtilsLocal', 'Copia angularUtils.js', function() {
+      grunt.log.ok('Sovrascrivo angularUtils.js da repo locale parallelo ' + new Date().toLocaleTimeString());
+      grunt.file.copy('../angularUtils/angularUtils.js', './app/bower_components/angularUtils/angularUtils.js');
   });
 
   grunt.registerTask('server', function (target) {

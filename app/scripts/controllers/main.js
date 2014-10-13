@@ -1,20 +1,8 @@
 'use strict';
-app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _) {
+app.controller('MainCtrl', function($route, $rootScope, $scope, $filter, _) {
 
     $scope.returnTemplate = function() {
         return 'views/templates/' + $route.current.params.template;
-    };
-    $scope.tinymceOptions = {
-        directionality: 'ltr',
-        plugins: 'code',
-        toolbar: 'styleselect bold italic print forecolor backcolor',
-        setup: function(ed) {
-            ed.on('change', function() {
-                $scope.$apply(function() {
-                    $scope.editvalue = ed.getContent();
-                });
-            });
-        }
     };
 
     $scope.draggableObjects = [{
@@ -24,6 +12,10 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $sce, $filter, _
     }, {
         contenuto: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx',
         type: 'testo',
+        allineamento: 'block'
+    }, {
+        contenuto: '<button>ciao</button>',
+        type: 'button',
         allineamento: 'block'
     }];
     $scope.editvalue = '';

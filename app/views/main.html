@@ -1,10 +1,7 @@
 <div id="toolsPanel">
     <p>Draggable components:</p>
     <ul ng-repeat="obj in draggableObjects track by $index" class="draglist" style="display:block" ng-drag="true" ng-drag-data="obj" ng-sorgente="panel">
-        <li style="clear: both; min-height: 10px;" ng-bind-html="obj.contenuto" ng-show="obj.type!=='button'">
-        </li>
-        <li style="clear: both; " ng-show="obj.type==='button'">
-            <button style="min-height: 10px; min-width: 120px;">{{obj.contenuto}}</button>
+        <li style="clear: both; min-height: 10px;" ng-bind-html="obj.contenuto | to_trusted">
         </li>
         <section class="descrizioneTool">
             <section>{{obj.type}}</section>
