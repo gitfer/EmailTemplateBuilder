@@ -15,9 +15,25 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $filter, _, serv
         type: 'testo',
         allineamento: 'block'
     }, {
-        contenuto: '<button>ciao</button>',
-        type: 'button',
+        contenuto: 'Lorem',
+        type: 'testo',
+        allineamento: 'inline'
+    }, {
+        contenuto: '<div style="display:block !important; clear:both; width:100%;"><div style="height: 60px"><br /><br /></div></div>',
+        type: 'spacer',
         allineamento: 'block'
+    }, {
+        contenuto: '<div style="display:block !important; clear:both; width:100%; "><img src="/images/yeoman.png"></img></div>',
+        type: 'immagine',
+        allineamento: 'block'
+    }, {
+        contenuto: '<div style="display:block !important; clear:both; width:100%; height: 2px"><hr style="display:block; clear:both; height: inherit;" ></div>',
+        type: 'divider',
+        allineamento: 'block'
+    }, {
+        contenuto: '<button>Cliccami</button>',
+        allineamento: 'block',
+        type: 'button'
     }];
     $scope.editvalue = '';
 
