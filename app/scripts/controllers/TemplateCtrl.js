@@ -23,9 +23,10 @@ app.controller('TemplateCtrl', ['$scope', 'serverTemplates', function ($scope, s
 	},
 	];
 	var mergeTemplates = function () {
-		$scope.templates = _.merge($scope.templates, _.map(serverTemplates.data, function (template) {
+		$scope.templates.push(_.map(serverTemplates.data, function (template) {
 			return { name: template.name, img: '', tmpl: template.tmpl}
 		}));
+		$scope.templates = _.flatten($scope.templates);
 	};
 	mergeTemplates();
 }]);
