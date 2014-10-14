@@ -25,16 +25,11 @@ table td {
     user-select: none;
 }
 [ng-drag] {
-    /*width: 100%;*/
-    /*height: 100px;*/
-    background: rgba(255, 0, 0, 0.5);
     text-align: center;
     display: block;
     cursor: move;
     list-style: none;
     padding-left: 1em;
-    min-width: 180px;
-    min-height: 40px;
 }
 [ng-drag].drag-over {
     border: solid 1px red;
@@ -84,6 +79,8 @@ h2 {
     left: 40px;
     top: 40px;
     border: 1px solid black;
+    overflow: auto;
+    height: 600px;
 }
 
 #toolsPanel .descrizioneTool {
