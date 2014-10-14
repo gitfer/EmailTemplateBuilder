@@ -11,10 +11,18 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $filter, _, serv
         type: 'testo',
         allineamento: 'block'
     }, {
-        contenuto: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx',
+        contenuto: '<strong>uidu s.r.l</strong>',
         type: 'testo',
         allineamento: 'block'
     }, {
+        contenuto: '<strong>uidu s.r.l</strong>',
+        type: 'testo',
+        allineamento: 'inline'
+    },  {
+        contenuto: ' · Via Aldo Moro, 17 - 24069 Trescore B.rio (Italy) · VAT/C.F./P.IVA: IT03823680164 · Bergamo Chamber of Commerce',
+        type: 'testo',
+        allineamento: 'inline'
+    },{
         contenuto: 'Lorem',
         type: 'testo',
         allineamento: 'inline'
@@ -23,7 +31,7 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $filter, _, serv
         type: 'spacer',
         allineamento: 'block'
     }, {
-        contenuto: '<div style="display:block !important; clear:both; width:100%; "><img src="/images/yeoman.png"></img></div>',
+        contenuto: '<img alt="Uidu-mongolfiera" src="http://uidu.org/assets/xuidu-mongolfiera-8f320214c33d2b55777a3b5db56c65fb.png.pagespeed.ic.jlvVTSD-Vm.png" >',
         type: 'immagine',
         allineamento: 'block'
     }, {

@@ -32,12 +32,19 @@ app.config(['$routeProvider', function($routeProvider) {
         .otherwise({
             redirectTo: '/error'
         });
+}]).run(['$rootScope', '$route', function($rootScope, $route) {
+    $rootScope.$on("$routeChangeSuccess", function(event, next, current) {
+        if (current !== undefined && current.$$route.originalPath === '/templates/:template' && next.$$route.originalPath === '') {
+            setTimeout(function() {
+                $route.reload();
+            }, 2000)
+        }
+    });
 }]);
 app.service('templateService', ['$http', function($http) {
     return {
         loadTemplates: function() {
             return $http.get('http://localhost:3000/templates').success(function(data) {
-                console.log(data.length + ' provenienti dal server');
                 return data;
             });
         },
@@ -47,7 +54,6 @@ app.service('templateService', ['$http', function($http) {
                     filename: filename
                 }
             }).success(function(data) {
-                console.log(data.length + ' provenienti dal server');
                 return data;
             });
         }

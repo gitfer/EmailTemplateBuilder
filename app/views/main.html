@@ -1,15 +1,16 @@
 <div id="toolsPanel">
     <p>Draggable components:</p>
+    <a class="getHTML" ng-href="#" href="#" ng-click="getHtml()">Get HTML!</a>
     <ul ng-repeat="obj in draggableObjects track by $index" class="draglist" style="display:block" ng-drag="true" ng-drag-data="obj" ng-sorgente="panel">
         <li style="clear: both; min-height: 10px;" ng-bind-html="obj.contenuto | to_trusted">
         </li>
         <section class="descrizioneTool">
-            <section>{{obj.type}}</section>
-            <button ng-click="removeDraggable(obj)">Rimuovimi</button>
+            <button class="btnRemoveDraggable" ng-drag="false" ng-drag-data="" href="#" ng-click="removeDraggable(obj)">Rimuovimi</button>
+            <section><p>Tipo: {{obj.type}}</p> <p>Allineamento: {{obj.allineamento}}</p></section>
         </section>
     </ul>
     <div>
-        <input type="button" name="" value=" + " ng-click="addDraggableElement = true ">
+        <button ng-click="addDraggableElement = !addDraggableElement ">{{addDraggableElement && '- draggable components' || '+ draggable components'}}</button>
         <div ng-show="addDraggableElement">
             <form name="formAddDraggable" ng-init="setFormScope(this)" novalidate>
                 <label for="Contenuto">Contenuto:
@@ -39,7 +40,7 @@
     <div>
         <p>
             <strong>Nota:</strong>Se riordini trascina bene fuori l'elemento dal container</p>
-            <a ng-href="#" href="#" ng-click="getHtml()">Get HTML!</a>
+            <a class="getHTML" ng-href="#" href="#" ng-click="getHtml()">Get HTML!</a>
     </div>
 </div>
 <div style="position:relative; left: 20%; max-width:600px">
