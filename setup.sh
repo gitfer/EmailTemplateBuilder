@@ -8,7 +8,7 @@ command -v grunt >/dev/null 2>&1 || { echo >&2 "I require grunt but it's not ins
 
 cd .. && git clone git@github.com:gitfer/angularUtils.git &&
 git clone git@github.com:gitfer/ngDraggable.git &&
-cd EmailTemplateBuilder && bower install &&
+cd EmailTemplateBuilder && bower install && npm install &&
 
 red='\e[0;31m'
 green='\e[0;32m'
