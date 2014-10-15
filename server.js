@@ -2,10 +2,11 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
 var fs = require('fs');
+var settings = require('./settings_'+process.env.ENV+'.json');
 
 var app = express();
 
-var url = 'mongodb://localhost:27033/EmailTemplateBuilder';
+var url = settings.mongoConnectionString + ':' + settings.mongoDbPort + '/EmailTemplateBuilder';
 
 var insertData = function(collectionName, data, callback) {
     MongoClient.connect(url, function(err, db) {
@@ -92,4 +93,4 @@ app.post('/templates', bodyParser.json(), function(req, res) {
     saveFile("app/views/templates/" + template.tmpl, template.html);
     insertData('templates', template, function() {});
 });
-app.listen(5000)
+app.listen(settings.expressjsPort)

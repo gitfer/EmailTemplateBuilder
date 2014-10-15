@@ -7,7 +7,7 @@
  * # ngCaptureHtml
  */
 angular.module('emailTemplateBuilderApp')
-  .directive('ngCaptureHtml', function ($http) {
+  .directive('ngCaptureHtml', function ($http, emailTemplateBuilderConfig) {
     return {
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
@@ -17,7 +17,7 @@ angular.module('emailTemplateBuilderApp')
       		var htmlWrapTail = '\n</html></ng-capture-template>'
       		var data = htmlWrapHead + content + htmlWrapTail;
       		if(attrs.ngPersist !== undefined && attrs.ngPersist === 'true'){
-      			$http.post('http://localhost:5000/staticHtml', {data: JSON.stringify(data)});
+      			$http.post(emailTemplateBuilderConfig.expressjsConnectionString+':'+emailTemplateBuilderConfig.expressjsPort+'/'+emailTemplateBuilderConfig.urlPostStaticTemplates, {data: JSON.stringify(data)});
       		}else{
       			console.log(data);
       		}

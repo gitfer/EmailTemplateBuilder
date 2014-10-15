@@ -7,7 +7,7 @@
  * # ngCaptureHtml
  */
 angular.module('emailTemplateBuilderApp')
-    .directive('ngCaptureTemplate', function($http) {
+    .directive('ngCaptureTemplate', function($http, emailTemplateBuilderConfig) {
       var templateRaw;
         return {
             restrict: 'E',
@@ -22,7 +22,7 @@ angular.module('emailTemplateBuilderApp')
                               var content = templateRaw;
                               var htmlWrapTail = '\n</html></ng-capture-template>'
                               var data = htmlWrapHead + content + htmlWrapTail;
-                              $http.post('http://localhost:5000/templates', {data: JSON.stringify(data), model: JSON.stringify(model)});
+                              $http.post(emailTemplateBuilderConfig.expressjsConnectionString+':'+emailTemplateBuilderConfig.expressjsPort+'/'+emailTemplateBuilderConfig.urlPostTemplates, {data: JSON.stringify(data), model: JSON.stringify(model)});
                             });
                     }
                 }

@@ -1,0 +1,10 @@
+{
+	"mongoConnectionString": "mongodb://localhost",
+	"mongoDbPath": "../../mongodb_data",
+	"mongoDbPort": 27033,
+	"mongoDatabaseName": "EmailTemplateBuilder",
+	"expressjsPort": 5000,
+	"expressjsConnectionString": "http://localhost",
+	"urlPostStaticTemplates": "staticHtml",
+	"urlPostTemplates": "templates"
+}
