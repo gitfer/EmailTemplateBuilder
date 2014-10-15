@@ -3,4 +3,5 @@ dist
 .tmp
 .sass-cache
 app/bower_components
-app/static_generated_templates
+app/static_generated_templates/*
+npm-debug.log
