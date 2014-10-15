@@ -17,7 +17,7 @@ angular.module('emailTemplateBuilderApp')
       		var htmlWrapTail = '\n</html></ng-capture-template>'
       		var data = htmlWrapHead + content + htmlWrapTail;
       		if(attrs.ngPersist !== undefined && attrs.ngPersist === 'true'){
-      			$http.post('http://localhost:3000/staticHtml', {data: JSON.stringify(data)});
+      			$http.post('http://localhost:5000/staticHtml', {data: JSON.stringify(data)});
       		}else{
       			console.log(data);
       		}

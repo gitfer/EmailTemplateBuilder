@@ -5,7 +5,7 @@ var fs = require('fs');
 
 var app = express();
 
-var url = 'mongodb://localhost:27017/EmailTemplateBuilder';
+var url = 'mongodb://localhost:27033/EmailTemplateBuilder';
 
 var insertData = function(collectionName, data, callback) {
     MongoClient.connect(url, function(err, db) {
@@ -34,7 +34,7 @@ var getTemplates = function(callback) {
             console.log(docs.length + ' found on DB...');
             db.close();
             callback(docs);
-        });
+        }); 
     });
 };
 var saveFile = function(content, filename) {
@@ -92,4 +92,4 @@ app.post('/templates', bodyParser.json(), function(req, res) {
     saveFile("app/views/templates/" + template.tmpl, template.html);
     insertData('templates', template, function() {});
 });
-app.listen(3000)
+app.listen(5000)

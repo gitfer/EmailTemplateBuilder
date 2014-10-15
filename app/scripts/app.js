@@ -44,12 +44,12 @@ app.config(['$routeProvider', function($routeProvider) {
 app.service('templateService', ['$http', function($http) {
     return {
         loadTemplates: function() {
-            return $http.get('http://localhost:3000/templates').success(function(data) {
+            return $http.get('http://localhost:5000/templates').success(function(data) {
                 return data;
             });
         },
         loadModel: function(filename) {
-            return $http.get('http://localhost:3000/templates/', {
+            return $http.get('http://localhost:5000/templates/', {
                 params: {
                     filename: filename
                 }

@@ -22,7 +22,7 @@ angular.module('emailTemplateBuilderApp')
                               var content = templateRaw;
                               var htmlWrapTail = '\n</html></ng-capture-template>'
                               var data = htmlWrapHead + content + htmlWrapTail;
-                              $http.post('http://localhost:3000/templates', {data: JSON.stringify(data), model: JSON.stringify(model)});
+                              $http.post('http://localhost:5000/templates', {data: JSON.stringify(data), model: JSON.stringify(model)});
                             });
                     }
                 }
