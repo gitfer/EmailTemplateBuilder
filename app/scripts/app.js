@@ -13,7 +13,7 @@ app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'views/selectTemplate.html',
-            controller: 'TemplateCtrl',
+            controller: 'templateCtrl',
             resolve: {
                 serverTemplates: function(templateService) {
                     return templateService.loadTemplates();
@@ -22,7 +22,7 @@ app.config(['$routeProvider', function($routeProvider) {
         })
         .when('/templates/:template', {
             templateUrl: 'views/main.html',
-            controller: 'MainCtrl',
+            controller: 'mainCtrl',
             resolve: {
                 serverModels: ['$route', 'templateService', function($route, templateService) {
                     return templateService.loadModel($route.current.params.template);
@@ -33,29 +33,11 @@ app.config(['$routeProvider', function($routeProvider) {
             redirectTo: '/error'
         });
 }]).run(['$rootScope', '$route', function($rootScope, $route) {
-    $rootScope.$on("$routeChangeSuccess", function(event, next, current) {
+    $rootScope.$on('$routeChangeSuccess', function(event, next, current) {
         if (current !== undefined && current.$$route.originalPath === '/templates/:template' && next.$$route.originalPath === '') {
             setTimeout(function() {
                 $route.reload();
-            }, 2000)
+            }, 2000);
         }
     });
 }]);
-app.service('templateService', ['$http', function($http) {
-    return {
-        loadTemplates: function() {
-            return $http.get('http://localhost:5000/templates').success(function(data) {
-                return data;
-            });
-        },
-        loadModel: function(filename) {
-            return $http.get('http://localhost:5000/templates/', {
-                params: {
-                    filename: filename
-                }
-            }).success(function(data) {
-                return data;
-            });
-        }
-    };
-}])

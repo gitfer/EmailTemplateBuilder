@@ -1,4 +1,4 @@
-app.controller('TemplateCtrl', ['$scope', 'serverTemplates', function ($scope, serverTemplates) {
+app.controller('templateCtrl', ['$scope', '_', 'serverTemplates', function ($scope, _, serverTemplates) {
 	$scope.selectedTemplate='basic';
 	$scope.templates = [
 	{
@@ -24,7 +24,7 @@ app.controller('TemplateCtrl', ['$scope', 'serverTemplates', function ($scope, s
 	];
 	var mergeTemplates = function () {
 		$scope.templates.push(_.map(serverTemplates.data, function (template) {
-			return { name: template.name, img: '', tmpl: template.tmpl}
+			return { name: template.name, img: '', tmpl: template.tmpl};
 		}));
 		$scope.templates = _.flatten($scope.templates);
 	};

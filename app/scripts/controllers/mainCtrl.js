@@ -1,5 +1,5 @@
 'use strict';
-app.controller('MainCtrl', function($route, $rootScope, $scope, $filter, _, serverModels) {
+app.controller('mainCtrl', function($route, $rootScope, $scope, $filter, _, serverModels) {
 
     $scope.returnTemplate = function() {
         var template = $route.current.params.template === undefined ? 'views/selectTemplate.html' : 'views/templates/' + $route.current.params.template;
@@ -47,7 +47,7 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $filter, _, serv
 
     $scope.droppedObjects = {};
 
-    $scope.onDropComplete = function(data, event) {
+    $scope.onDropComplete = function(data) {
         if (data.sorgente === 'panel') {
             if (angular.isUndefined($scope.droppedObjects[data.ngDropIdCollection])) {
                 $scope.droppedObjects[data.ngDropIdCollection] = [];
@@ -138,8 +138,9 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $filter, _, serv
             id: data.id
         });
         $scope.$apply(function() {
-            if (el[0] !== undefined)
+            if (el[0] !== undefined){
                 el[0].idEditor = data.idEditor;
+            }
         });
     });
     $scope.getHtml = function() {
@@ -164,7 +165,7 @@ app.controller('MainCtrl', function($route, $rootScope, $scope, $filter, _, serv
                     found = true;
                     break;
                }
-            };
+            }
             if(!found){
                 $scope.draggableObjects.push(objServer);
             }
